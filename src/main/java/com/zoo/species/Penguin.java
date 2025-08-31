@@ -1,23 +1,44 @@
 package com.zoo.species;
-import com.zoo.animals.Bird;
 
-public class Penguin extends Bird {
-    public Penguin(String name, int age, double weight, int energyLevel, double wingSpan) {
-        super(name, age, weight, energyLevel, wingSpan);
+import com.zoo.animals.Bird;
+import com.zoo.interfaces.IPlayable;
+
+public class Penguin extends Bird implements IPlayable {
+
+    public Penguin(String name, int energyLevel) {
+        super(name, energyLevel);
     }
 
     @Override
     public void makeSound() {
-        System.out.println(name + " каже: Кря-кря!");
-    }
-
-    public void swim() {
-        System.out.println(name + " обожнює плавати");
+        System.out.println(name + " кряки!");
     }
 
     @Override
-    public void fly() {
-        System.out.println(name + " не літає,бо...  ");
-        swim();
+    public void eat() {
+        System.out.println(name + " їсть рибку.");
+        changeEnergy(+20);
+    }
+
+    @Override
+    public void sleep() {
+        System.out.println(name + " спить на льоду.");
+        changeEnergy(+25);
+    }
+
+    @Override
+    public void uniqueBirdAction() {
+        surfOnIce();
+    }
+
+    private void surfOnIce() {
+        System.out.println(name + " сьорфить по льоду!");
+        changeEnergy(-55);
+    }
+
+    @Override
+    public void play() {
+        System.out.println(name + " грає з друзями на льоду.");
+        changeEnergy(-50);
     }
 }
