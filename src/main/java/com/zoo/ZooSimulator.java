@@ -1,57 +1,70 @@
 package com.zoo;
 
+import com.zoo.animals.Animal;
+import com.zoo.interfaces.IPlayable;
 import com.zoo.species.*;
-import com.zoo.zookeper.ZooKeeper;
+import com.zoo.zookeeper.ZooKeeper;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ZooSimulator {
 
     public static void main(String[] args) {
-        Lion King = new Lion("Левчик", 7, 100, 50, "рудий");
-        Elephant Elephant = new Elephant("Слоненятко", 2, 500.0, 70, "сірий");
-        Eagle eagle = new Eagle("Орел", 3, 6.0, 80, 2.5);
-        Penguin penguin = new Penguin("Кіндер_Пінгві", 1, 10.0, 50, 1.0);
+        Lion king = new Lion("Левчик", 100);
+        Elephant dumbo = new Elephant("Слоненятко", 100);
+        Eagle eagle = new Eagle("Орлик", 100);
+        Penguin pingu = new Penguin("Кіндер", 100);
 
         ZooKeeper keeper = new ZooKeeper("Петрівна");
 
-        System.out.println("Веселий день у зоопарку");
+        System.out.println(" Веселий день у зоопарку!\n");
 
-        keeper.feedAnimal(King);
-        keeper.feedAnimal(Elephant);
-        keeper.feedAnimal(eagle);
-        keeper.feedAnimal(penguin);
+        List<Animal> animals = new ArrayList<>();
+        animals.add(king);
+        animals.add(dumbo);
+        animals.add(eagle);
+        animals.add(pingu);
 
-        System.out.println("\nВесела гра з тваринами\n");
+        List<IPlayable> playableAnimals = new ArrayList<>();
+        playableAnimals.add(king);
+        playableAnimals.add(dumbo);
+        playableAnimals.add(eagle);
+        playableAnimals.add(pingu);
 
-        keeper.playWithAnimal(King);
-        keeper.playWithAnimal(Elephant);
+        System.out.println("\nГраємося з усіма тваринами:");
+        for (IPlayable animal : playableAnimals) {
+            animal.play();
+        }
+
+        keeper.playWithAnimal(king);
+        keeper.playWithAnimal(dumbo);
         keeper.playWithAnimal(eagle);
-        keeper.playWithAnimal(penguin);
+        keeper.playWithAnimal(pingu);
 
-        System.out.println("\nЗабави тварин\n");
+        System.out.println("\n Унікальні забави:");
+        king.makeSound();
+        dumbo.move();
+        eagle.uniqueBirdAction();
+        pingu.uniqueBirdAction();
 
-        King.hunt();
-        Elephant.spraySelf();
-        eagle.fly();
-        penguin.fly();
+        System.out.println("\nГодуємо і вкладаємо спати всіх тварин:");
+        for (Animal animal : animals) {
+            animal.eat();
+            animal.sleep();
 
-        System.out.println("\nРівень енергії\n");
+        }
 
-        keeper.checkAnimalEnergyLevel(King);
-        keeper.checkAnimalEnergyLevel(Elephant);
+        System.out.println("\n Перевірка енергії:");
+        keeper.checkAnimalEnergyLevel(king);
+        keeper.checkAnimalEnergyLevel(dumbo);
         keeper.checkAnimalEnergyLevel(eagle);
-        keeper.checkAnimalEnergyLevel(penguin);
+        keeper.checkAnimalEnergyLevel(pingu);
 
-        System.out.println("\nСтан наприкінці дня:\n");
 
-        King.displayInfo();
-        Elephant.displayInfo();
-        eagle.displayInfo();
-        penguin.displayInfo();
-
-        System.out.println("\nЗавершено зоо день");
+        System.out.println("\n✅ День у зоопарку завершено!");
     }
 }
-
 
         // +Створіть кілька об'єктів різних тварин (лев, орел, пінгвін, слон), задавши їх унікальні параметри.
 

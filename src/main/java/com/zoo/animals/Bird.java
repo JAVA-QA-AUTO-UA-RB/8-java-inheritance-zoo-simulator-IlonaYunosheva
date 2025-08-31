@@ -1,18 +1,9 @@
 package com.zoo.animals;
 
-public class Bird extends Animal {
-    protected Double wingSpan;
+public abstract class Bird extends Animal {
 
-    public Bird (String name, int age, double weight, int energyLevel, Double wingSpan) {
-        super(name, age, weight, energyLevel);
-        this.wingSpan = wingSpan;
+    public Bird (String name, int energyLevel) {
+        super(name, energyLevel);
     }
-    @Override
-    public void makeSound() {
-        System.out.println(name + " :Я птах і я чудово літаю..вжуух.");
-    }
-    public void fly() {
-        decreaseEnergy(15);
-        System.out.println(name + " :Я налітався та втомився. Моя енергія: " + getEnergyLevel());
-    }
+    public abstract void uniqueBirdAction();
 }
